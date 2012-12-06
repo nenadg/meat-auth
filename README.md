@@ -1,3 +1,5 @@
+![travis status](https://secure.travis-ci.org/nenadg/meat-auth.png?branch=master!:https://travis-ci.org/nenadg/meat-auth)
+
 meat-auth
 =========
 
