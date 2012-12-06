@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "author":"Nenad Golubović <me@nenadg.com>",
-  "description":"Simple node boilerplate with additional html rendering",
+  "description":"Simple node.js authentication example called meat",
   "scripts": {
     "start": "node app"
   },
