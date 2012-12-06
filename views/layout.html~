@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <meta name="description" content="Node.js site">
+    <meta name="author" content="Nenad Golubović">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0 " />
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- styles -->
+    <link href="/stylesheets/style.css" rel="stylesheet" media="screen" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  </head>
+  <body>
+    <header>
+        <h1><%= title %></h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/users">Users</a></li>
+            </ul>
+        </nav>
+    </header>
+  
+    <section id="content">
+        <%- body %>
+        
+    </section>
+   
+    <footer>
+        <p class="right"><strong>node.js page</strong></p>
+        <p class="right">
+            
+            <% if(userstatus === true) { %>
+            logged in as <span class="green"><%= username  %></span> | <a href="/logout">logout</a>
+            <% } else { %>
+            hello visitor
+            <% } %>
+            
+           
+        </p>
+    </footer>
+  </body>
+</html>
+

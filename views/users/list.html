@@ -1,0 +1,25 @@
+<h2>Users</h2>
+<p>Current users</p>
+<% if(users.length >= 1) { %>
+    <ol class="list">
+        <li class="actions heading">Actions</li>
+        <li class="content heading">Username and email</li>
+        <li class="time heading">Last login and session time</li>
+        <% for(var user in users) { %>
+        
+        <li class="delete"><a href='/users/remove/<%= users[user]._id %>'>delete</a></li>
+        <li class="update">update</li>
+        <li class="content"><%- users[user].username %> &lt;<%- users[user].email %>&gt;
+            <% if(users[user].isOnline) { %> <div class="online" title="User is online"></div> <% } else { %>
+            <div class="offline" title="User is offline"></div>
+             <% } %>
+        </li>
+        <li class="time"><%- users[user].lastLogin %> : <%- session %> </li>
+       <% } %>
+       <li class="new"><a href="/users/create">Create user</a></li>
+    </ol>
+<% } else {  %>
+    <p class="notification">No users in database!</p>
+<% } %>
+<p></p>
+ 

@@ -1,0 +1,3 @@
+// Password hashing module
+
+var crypto = require('../crypto');

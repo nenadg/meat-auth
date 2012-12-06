@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: kopi
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    infra: rs
+    url: ${name}.${target-base}
+    mem: 128M
+    instances: 1
+    services:
+      mongodb-auth-kopi:
+        type: mongodb

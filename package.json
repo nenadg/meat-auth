@@ -1,0 +1,17 @@
+{
+  "name": "meat",
+  "version": "0.0.1",
+  "private": true,
+  "author":"Nenad Golubović <me@nenadg.com>",
+  "description":"Simple node boilerplate with additional html rendering",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.3",
+    "ejs": "*",
+    "express-ejs-layouts":"*",
+    "mongoose": "3.4.0",
+    "crypto":"0.0.3"
+  }
+}
