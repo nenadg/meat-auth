@@ -28,13 +28,7 @@ app.configure(function(){
   
   // Signed cookies use this
   app.use(express.cookieParser('sekreto-momento'));
-  app.use(express.session({ 
-                           secret: '032k0fk032u33fj0d',
-                           cookie: {
-                             maxAge  : new Date(Date.now() + 3600000), //1 Hour
-                             expires : new Date(Date.now() + 3600000) //1 Hour
-                           }
-                           }));
+  app.use(express.session());
   
   // For ejs layouting
   app.use(expressLayouts);
@@ -55,7 +49,7 @@ app.use(function(req, res, next){
   next();
 });
 
-// Dev erroor handling
+// Dev error handling
 app.configure('development', function(){
   app.use(express.errorHandler());
 });

@@ -10,9 +10,7 @@ var User = new Schema({
     hash                : { type: String },
     email               : { type: String, unique: true },
     dateCreated         : { type: Date },
-    isOnline            : { type: Boolean },
-    lastLogin           : { type: Date },
-    sessionTimeSpan     : { type: Number }
+    lastLogin           : { type: Date }
 });
 
 mongoose.model('User', User);
@@ -71,24 +69,15 @@ authProvider.prototype.remove = function(id, callback) {
 
 
 // Update
-authProvider.prototype.switchStatus = function(id, callback) {
+authProvider.prototype.registerLogin = function(id, callback) {
     User.findOne({ _id: id }, function (err, user){
-      switch(user.isOnline){
-        case(true):
-            user.isOnline = false;
-            user.save(function (err) {
-                callback(user);
-            });
-            break;
-        case(false):
-            user.isOnline = true;
+     
             user.lastLogin = new Date();
             user.save(function (err) {
                 callback(user);
             });
-            break;
-        }
-    });
+            
+        });
     
 };
 

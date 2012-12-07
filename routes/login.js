@@ -22,10 +22,9 @@ exports.login = function(req, res){
 }
 
 exports.logout = function(req, res){
-  console.log(req.session.user._id);
-  authProvider.switchStatus(req.session.user._id, function(){
+  authProvider.registerLogin(req.session.user._id, function(){
     req.session.destroy(function(){
-    res.redirect('/');
+        res.redirect('/');
     });
   });
  

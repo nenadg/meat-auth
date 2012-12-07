@@ -10,7 +10,6 @@ exports.list = function(req, res) {
     res.render('users/list', { locals: 
                 { title: 'all users', 
                   users: users,
-                  session: req.session.cookie.expires.getMinutes(),
                   username : req.session.user.name, userstatus : req.session.user.isOnline } });
   });
 };

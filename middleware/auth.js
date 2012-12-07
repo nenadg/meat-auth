@@ -13,7 +13,7 @@ exports.authenticate = function(req, fn) {
         hash(req.body.password, user.salt, function(err, hash) {
             if(err) return fn(err);
             if(hash == user.hash) {
-                authProvider.switchStatus(user._id, function(user) {
+                authProvider.registerLogin(user._id, function(user) {
                     
                     if (user) {
                           // Regenerate session when signing in
@@ -21,11 +21,15 @@ exports.authenticate = function(req, fn) {
                           req.session.regenerate(function(){
                               // Store the user's params
                               // in the session store to be retrieved
-                              req.session.user = new Object();
-                              req.session.user._id = user._id;
-                              req.session.user.name = user.username
-                              req.session.user.isOnline = user.isOnline;
-                              req.session.success = 'Authenticated as ' + user.name;
+                              req.session.user = {
+                                                     _id      : user._id,
+                                                     name     : user.username,
+                                                     isOnline : (user != undefined),
+                                                     lastLogin: user.lastLogin,
+                                                     success  : 'Authenticated as ' + user.name
+                                                 };
+                              req.session.secret = '#' + Math.floor(Math.random()*16777215).toString(16); // colored session secret
+                              req.session.cookie.maxAge = new Date(Date.now() + 3600000);
                               return fn(null, user);
                           });
                         } else {
