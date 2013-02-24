@@ -1,16 +1,19 @@
 // Dependencies
-var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
-var routes = require('./routes');
-var login = require('./routes/login');
-var auth = require('./middleware/auth');
-var users = require('./routes/users');
 var http = require('http');
 var path = require('path');
+var express = require('express');
+var layouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
-var mongourl = require('./middleware/mongo');
+var mongourl = require('./shared/mongourl');
 
-mongourl.generate(function(url) { mongoose.connect(url); });
+var routes = require('./routes');
+var login = require('./routes/login');
+var auth = require('./auth/auth');
+var users = require('./routes/users');
+
+var db = 'auth-db';
+
+mongourl.generate(function(url) { mongoose.connect(url) }, db);
 
 var app = module.exports = express();
 
@@ -31,7 +34,7 @@ app.configure(function(){
   app.use(express.session());
   
   // For ejs layouting
-  app.use(expressLayouts);
+  app.use(layouts);
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   

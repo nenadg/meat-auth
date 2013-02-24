@@ -1,9 +1,9 @@
-var authProvider = require('../middleware/authProvider').authProvider;
-var authProvider = new authProvider();
+var provider = require('../auth/provider').provider;
+var provider = new provider();
 
 exports.index = function(req, res){
   if(req.session.user != undefined){
-    authProvider.findById(req.session.user._id, function(error, user) {
+    provider.findById(req.session.user._id, function(error, user) {
         res.render('index', { title: 'Hello node', username : req.session.user.name, userstatus : req.session.user.isOnline });
     });
   } else {

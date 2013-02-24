@@ -6,7 +6,16 @@ meat-auth
 Simple node.js authentication example called meat
 
 ## Prerequisites
+    MongoDB
     $ mongod
+    
+    bcrypt module requires libssl-dev previously installed on system
+    
+    Ubuntu
+    $ sudo apt-get install libssl-dev
+    
+    OpenSUSE
+    $ sudo zypper in libopenssl-devel
 
 ## Installation
     $ npm install

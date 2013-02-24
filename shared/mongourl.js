@@ -1,7 +1,7 @@
 // This code will generate url for both local mongodb an remote
 // in this case - code provided applies for AppFog 
 
-exports.generate = function(callback){
+exports.generate = function(callback, collection){
     
     if(process.env.VCAP_SERVICES){
         var env = JSON.parse(process.env.VCAP_SERVICES);
@@ -13,14 +13,14 @@ exports.generate = function(callback){
             "username":"",
             "password":"",
             "name":"",
-            "db":"meat"
+            "db": collection
         }
     }
-    
+
     var url;
     obj.hostname = (obj.hostname || 'localhost');
     obj.port = (obj.port || 27017);
-    obj.db = (obj.db || 'test');
+    obj.db = (obj.db || 'auth-test-db');
     
     if(obj.username && obj.password){
         url = "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;

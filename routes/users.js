@@ -1,12 +1,12 @@
 // Article provider
-var authProvider = require('../middleware/authProvider').authProvider;
-var auth = require('../middleware/auth');
+var provider = require('../auth/provider').provider;
+var auth = require('../auth/auth');
 
-var authProvider = new authProvider();
+var provider = new provider();
 
 // list all
 exports.list = function(req, res) {
-  authProvider.findAll(function(err, users) {
+  provider.findAll(function(err, users) {
     res.render('users/list', { locals: 
                 { title: 'all users', 
                   users: users,
@@ -24,8 +24,8 @@ exports.create = function(req, res) {
              }
     });   
   } else if(req.method === 'POST') {
-    
-    authProvider.save({
+    console.log('post...');
+    provider.save({
         username: req.param('username'),
         password: req.param('password'),
         email: req.param('email')
@@ -36,7 +36,7 @@ exports.create = function(req, res) {
 };
 
 exports.register = function(req, res) {
-    authProvider.save({
+    provider.save({
         username: req.param('username'),
         password: req.param('password'),
         email: req.param('email')
@@ -47,7 +47,7 @@ exports.register = function(req, res) {
 
 // read
 exports.user = function(req, res) {
-    authProvider.findById(req.param('id'), function(err, user) {
+    provider.findById(req.param('id'), function(err, user) {
         res.render('users/user', {
           locals: {
             title: user.username,
@@ -60,7 +60,7 @@ exports.user = function(req, res) {
 
 // remove
 exports.remove = function(req, res) {
-    authProvider.remove(req.param('id'), function(err, user) {
+    provider.remove(req.param('id'), function(err, user) {
         res.redirect('/users');
     });
 };

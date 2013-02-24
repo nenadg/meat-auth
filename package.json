@@ -12,6 +12,10 @@
     "ejs": "*",
     "express-ejs-layouts":"*",
     "mongoose": "3.4.0",
-    "crypto":"0.0.3"
+    "bcrypt":"0.7.3"
+  },
+  "env": {
+        "PYTHON": "/opt/local/bin/python2.7"
   }
+  
 }

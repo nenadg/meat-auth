@@ -1,7 +1,7 @@
-var authenticate = require('../middleware/auth').authenticate;
-var referer = require('../middleware/auth').referer;
-var authProvider = require('../middleware/authProvider').authProvider;
-var authProvider = new authProvider();
+var authenticate = require('../auth/auth').authenticate;
+var referer = require('../auth/auth').referer;
+var provider = require('../auth/provider').provider;
+var provider = new provider();
 
 var backURL;
 
@@ -10,7 +10,7 @@ exports.login = function(req, res){
         case('GET'):
             referer.check(req);
             backURL = referer.ref;
-            authProvider.findAll(function(err, users){
+            provider.findAll(function(err, users){
                 (users.length == 0) ? res.render('auth/register', { title: 'Login page', layout: 'loginLayout' }) : res.render('auth/login', { title: 'Login page', layout: 'loginLayout' });
             });
             
@@ -22,7 +22,7 @@ exports.login = function(req, res){
 }
 
 exports.logout = function(req, res){
-  authProvider.registerLogin(req.session.user._id, function(){
+  provider.registerLogin(req.session.user._id, function(){
     req.session.destroy(function(){
         res.redirect('/');
     });
