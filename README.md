@@ -6,6 +6,9 @@ meat-auth
 Simple node.js authentication example called meat
 
 ## Prerequisites
+    RedisDB
+    http://redis.io/ for more info
+    
     MongoDB
     $ mongod
     
