@@ -12,7 +12,8 @@
     "ejs": "*",
     "express-ejs-layouts":"*",
     "mongoose": "3.6.20",
-    "bcrypt":"0.7.7"
+    "bcrypt":"0.7.7",
+    "connect-redis": "1.4.5"
   },
   "env": {
         "PYTHON": "/opt/local/bin/python2.7"

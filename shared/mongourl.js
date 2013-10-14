@@ -20,7 +20,7 @@ exports.generate = function(callback, collection){
     var url;
     obj.hostname = (obj.hostname || 'localhost');
     obj.port = (obj.port || 27017);
-    obj.db = (obj.db || 'auth-test-db');
+    obj.db = (obj.db || 'bulk-import-db');
     
     if(obj.username && obj.password){
         url = "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;

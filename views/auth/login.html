@@ -1,21 +1,28 @@
-<div class="login-form">    
-    <form method="post" action="/login" class="login">
-      <h1><%- title %></h1>
+<div class="container">   
+    <form method="post" action="/login" class="form-signin" id="loginform" autocomplete="odd">
+      <h2><%- title %></h2>
+      
+      <label>Username</label>
+      <input id="username" name="username" type="text" value="" required="required" />
+      
+      <label>Password:</label>
+      <input id="password" name="password" type="password" value="" required="required" />
+      
       <p>
-        <label>Username:</label>
-        <input type="text" name="username">
+        <label class="checkbox">Remember me
+          <input type="checkbox" id="rememberme" name="rememberme" checked="checked">
+        </label>
+      </p>
+
+      <p>
+        <button class="btn btn-medium btn-primary" type="submit">Login</button>
       </p>
       <p>
-        <label>Password:</label>
-        <input type="password" name="password">
-      </p>
-      <p>
-        <input type="submit" value="Login">
-      </p>
-      <p class="note">
-        If you're here by accident, you can always go <a href="/">home</a>
+         <a href="/">Back to home</a>
       </p>
     </form>
-    
 </div>
+
+ 
+    
 

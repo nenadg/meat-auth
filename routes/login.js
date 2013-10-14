@@ -1,32 +1,34 @@
-var authenticate = require('../auth/auth').authenticate;
-var referer = require('../auth/auth').referer;
+var auth = require('../auth/module');
 var provider = require('../auth/provider').provider;
 var provider = new provider();
-
+var authenticate = auth.authenticate;
+var referer = auth.referer;
 var backURL;
 
 exports.login = function(req, res){
     switch(req.method){
         case('GET'):
-            referer.check(req);
-            backURL = referer.ref;
+            backURL = referer(req);
             provider.findAll(function(err, users){
-                (users.length == 0) ? res.render('auth/register', { title: 'Login page', layout: 'loginLayout' }) : res.render('auth/login', { title: 'Login page', layout: 'loginLayout' });
-            });
-            
+                (users.length == 0) ? 
+                res.render('auth/register', { title: 'Registruj se', layout: 'loginLayout', isNew: true }) 
+                : res.render('auth/login', { title: 'Uloguj se', layout: 'loginLayout' });
+            }); 
             break;
-        case('POST'):
-            authenticate(req, function(err, user) { (user) ? res.redirect(backURL) : res.redirect('/login') });
+        case('POST'): 
+            authenticate(req, res, function(err, user) { (user) ? res.redirect(backURL || referer(req)) : res.redirect('/login') });
             break;
     }
 }
 
 exports.logout = function(req, res){
-  provider.registerLogin(req.session.user._id, function(){
+  // linija ispod otvara novu sesiju u redisu, sto mi hosting ne dozvoljava za 0$
+  // redisdb.zrem('online', req.session.user.name);
+  provider.registerLogin(req.session.user._id, function(err){    
     req.session.destroy(function(){
+        
         res.redirect('/');
     });
   });
- 
 }
 

@@ -1,1 +1,19 @@
-<p>Hello world</p>
+<div class="row" id="content">
+            <div class="span3 visible-desktop">
+                <div data-spy="affix" data-offset-top="0" class="affix span3 kill-margins-paddings">
+                    <% if(userstatus != true) { %>
+                    <p class="divide">
+                        <a href="/login" class="btn btn-small btn-success"><i class="icon-lock icon-white"></i>&nbsp;Login</a>
+                    </p>
+                    <% } else { %>
+                    <p class="divide">
+                        <a href="/logout" class="btn btn-small btn-warning"><i class="icon-lock icon-white"></i>&nbsp;Logout</a>
+                    </p>
+                    <% } %>
+                    </p>
+                    <p class="trademark">
+                        <small class="gray-bold">meat auth<sub>beta</sub></small><small class="gray"></small>
+                    </p>
+                </div>
+            </div> 
+        </div>

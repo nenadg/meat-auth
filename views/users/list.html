@@ -1,25 +1,42 @@
 <h2>Users</h2>
-<p>Current users</p>
-<% if(users.length >= 1) { %>
-    <ol class="list">
-        <li class="actions heading">Actions</li>
-        <li class="content heading">Username and email</li>
-        <li class="time heading">Last login</li>
-        <% for(var user in users) { %>
-        
-        <li class="delete"><a href='/users/remove/<%= users[user]._id %>'>delete</a></li>
-        <li class="update">update</li>
-        <li class="content"><%- users[user].username %> &lt;<%- users[user].email %>&gt;
-            <% if(userstatus) { %> <div class="online" title="User is online"></div> <% } else { %>
-            <div class="offline" title="User is offline"></div>
-             <% } %>
-        </li>
-        <li class="time"><%- users[user].lastLogin %> </li>
-       <% } %>
-       <li class="new"><a href="/users/create">Create user</a></li>
-    </ol>
+<%  if(users.length >= 1) { %>
+<table class="table table-hover table-bordered">
+    <caption>Users</caption>
+    <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Last login date</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%  for(var user in users) {
+            if(users[user]._id !== undefined){
+            
+         %>
+        <tr>
+            <td><a class="btn btn-small btn-danger" href='/users/remove/<%= users[user]._id %>'>remove</a>
+                <a class="btn btn-small btn-info" href='/users/update/<%= users[user].username %>'>edit</a>
+            </td>
+            <td>
+                <% if(online.indexOf(users[user].username) > -1) { %> 
+                <i class="icon-eye-open"></i>&nbsp;<%- users[user].username %>
+                <% } else { %>
+                <i class="icon-eye-close"></i>&nbsp;<%- users[user].username %>
+                <% } %>
+            </td>
+            <td>
+                <%- users[user].email %>
+            </td>
+            <td><%- users[user].lastLogin %> </td>
+            <td><strong><%- roles[users[user].role] %></strong></td>
+        </tr>
+        <% } } %>    
+    </tbody>
+</table>
+<p><a class="btn btn-big btn-primary" href="/users/create">New user</a></p>
 <% } else {  %>
-    <p class="notification">No users in database!</p>
+    <p>No users in database.</p>
 <% } %>
-<p></p>
- 

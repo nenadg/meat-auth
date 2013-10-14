@@ -1,22 +1,21 @@
-<div class="login-form">    
-    <form method="post" action="/users/register" class="login">
+<div class="container">    
+    <form method="post" action="/users/register" class="form-signin">
      <h2>Register yourself</h2>
-      <p>
+      
         <label>Username:</label>
         <input type="text" name="username">
-      </p>
-      <p>
+     
         <label>Password:</label>
         <input type="password" name="password">
-      </p>
-      <p>
+     
         <label>E-mail:</label>
         <input type="text" name="email">
+        
+        <input type="hidden" name="isNew" value="<%- isNew %>" />
+      <p>
+        <button class="btn btn-medium btn-primary" type="submit">Register</button>
       </p>
       <p>
-        <input type="submit" value="Register">
-      </p>
-      <p class="note">
         It seems that you're the first user to come here. Create your account.
       </p>
       
